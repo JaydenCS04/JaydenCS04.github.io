@@ -82,6 +82,20 @@ p{margin:0 0 16px}
 .next a:hover{text-decoration:underline}
 @media (max-width:700px){.has-shot{flex-direction:column;align-items:stretch;gap:16px}.has-shot .shot{flex:none;width:100%}.brand{display:none}.bar{padding:0 10px}.menu{justify-content:flex-start}.menu a{padding:8px 10px}.page{padding-top:92px}}
 @media (prefers-reduced-motion:reduce){.page.on{animation:none}.avatar img{transform:none}*{transition:none!important}}
+
+.gal{display:grid;grid-template-columns:1fr 1.6fr;gap:14px;margin-top:16px;align-items:stretch}
+.gal figure,.pic{margin:0;position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--line);background:var(--tint)}
+.gal .fill{min-height:240px}
+.fill img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gal img,.pic img{display:block;width:100%;height:auto}
+.gal .fill img{height:100%}
+.pic{margin-top:16px;max-width:560px}
+figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;color:#fff;font-size:.82rem;line-height:1.35;background:linear-gradient(transparent,rgba(8,20,26,.72))}
+.tools3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:14px}
+.tool{text-align:left}
+.tool svg{width:54px;height:54px;color:var(--accent);margin-bottom:10px}
+.tool h3{margin:0 0 2px}
+@media (max-width:700px){.gal{grid-template-columns:1fr}.gal .fill{aspect-ratio:4/3}}
 </style>
 </head>
 <body>
@@ -184,12 +198,17 @@ p{margin:0 0 16px}
       <ul><li>Software engineering and web development</li><li>Networks, systems and security</li><li>Learning by doing: study and practice go hand in hand</li></ul></div>
       <div class="nl"><p>Een technische ICT-bachelor met de nadruk op het bouwen van duurzame, werkende oplossingen. Via de pilot van Defensity College Carib combineer ik de studie met werken bij Defensie.</p>
       <ul><li>Software engineering en webontwikkeling</li><li>Netwerken, systemen en beveiliging</li><li>Leren door toepassen: studie en praktijk lopen door elkaar</li></ul></div>
+      <figure class="pic"><img src="edu/uoc.jpg" alt="At the University of Curaçao" loading="lazy" onerror="this.closest('figure').remove()"><figcaption><span class="en">At the University of Curaçao</span><span class="nl">Op de University of Curaçao</span></figcaption></figure>
     </div>
     <div class="tl">
       <span class="tag"><span class="en">Completed</span><span class="nl">Afgerond</span></span>
       <h3><span class="en">HAVO: Science + Computer Science + Mathematics</span><span class="nl">HAVO: N&amp;G + Informatica + Wiskunde</span></h3>
       <div class="meta"><span class="en">RKCS · Top Graduate diploma</span><span class="nl">RKCS · Diploma Best Geslaagde</span></div>
       <p><span class="en">Graduated as the top graduate of the school and the best in computer science. This is where my interest in technology and logical thinking began.</span><span class="nl">Afgestudeerd als best geslaagde van de school en de beste in het vak informatica. Hier is mijn interesse in techniek en logisch redeneren begonnen.</span></p>
+      <div class="gal">
+        <figure class="fill"><img src="edu/award-2022.jpg" alt="Receiving the Best Geslaagde award, class of 2022" loading="lazy" style="object-position:50% 30%" onerror="this.closest('figure').remove()"><figcaption><span class="en">Best Geslaagde award ceremony, class of 2022</span><span class="nl">Uitreiking Best Geslaagde, klas van 2022</span></figcaption></figure>
+        <figure><img src="edu/havo-certificates.jpg" alt="Best Geslaagde diploma and two certificates for the highest final grades in 2022" loading="lazy" onerror="this.closest('figure').remove()"><figcaption><span class="en">Best graduate diploma plus certificates for the highest final grade in Computer Science and the highest average final grade, 2022</span><span class="nl">Diploma Best Geslaagde plus certificaten voor het hoogste eindcijfer informatica en het hoogste gemiddelde eindcijfer, 2022</span></figcaption></figure>
+      </div>
     </div>
   </div>
   <div class="next"><a href="#experience"><span class="en">← Experience</span><span class="nl">← Werkervaring</span></a><a href="#certifications"><span class="en">Certifications →</span><span class="nl">Certificeringen →</span></a></div>
@@ -214,7 +233,7 @@ p{margin:0 0 16px}
   <p class="kicker"><span class="en">What I'm good at</span><span class="nl">Waar ik goed in ben</span></p>
   <h2>Expertise</h2>
   <p class="lead"><span class="en">Microsoft security is my core, with a broad base around it and curiosity about what's coming next.</span><span class="nl">Mijn kern is Microsoft-security, met een brede basis eromheen en een nieuwsgierigheid naar wat er nog aankomt.</span></p>
-  <div class="group"><h3>Microsoft security</h3><div class="chips"><span>Entra</span><span>Defender</span><span>Purview</span><span>Intune</span></div></div>
+  <div class="group"><h3>Microsoft security</h3><div class="tools3"><div class="card tool"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M10 40c0-8 6-13 14-13s14 5 14 13"/><circle cx="37" cy="33" r="4.5" fill="var(--bg)"/><path d="M35.2 33l1.3 1.4 2.4-2.8"/></svg><h3>Microsoft Entra</h3><p><span class="en">Identity and access: who gets in, and what they can reach.</span><span class="nl">Identiteit en toegang: wie komt binnen en waar mag je bij.</span></p></div><div class="card tool"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l15 5.5v11c0 10-6.5 17.5-15 21.5C15.500 39 9 31.500 9 21.500v-11z"/><path d="M17 23.500l5 5 9.500-10.500"/></svg><h3>Microsoft Defender</h3><p><span class="en">Threat protection and detection across endpoints and cloud.</span><span class="nl">Bescherming en detectie van dreigingen op endpoints en in de cloud.</span></p></div><div class="card tool"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="9" width="36" height="24" rx="3"/><path d="M16 41h16M24 33v8"/><circle cx="24" cy="21" r="5"/><path d="M22 21l1.6 1.6L26.500 19.500"/></svg><h3>Microsoft Intune</h3><p><span class="en">Managing and securing devices across the organisation.</span><span class="nl">Beheer en beveiliging van devices binnen de organisatie.</span></p></div></div><div class="chips"><span>Purview</span></div></div>
   <div class="group"><h3><span class="en">Security &amp; infrastructure</span><span class="nl">Security &amp; infrastructuur</span></h3><div class="chips"><span>Identity &amp; Access Management</span><span>Endpoint security</span><span><span class="en">Securing digital environments</span><span class="nl">Digitale omgevingen beveiligen</span></span><span><span class="en">Azure architecture</span><span class="nl">Azure-architectuur</span></span><span><span class="en">Endpoint management</span><span class="nl">Eindpuntbeheer</span></span></div></div>
   <div class="group"><h3><span class="en">Programming &amp; web</span><span class="nl">Programmeren &amp; web</span></h3><div class="chips"><span>Python</span><span>Java</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span><span class="en">and more</span><span class="nl">en meer</span></span></div></div>
   <div class="group"><h3><span class="en">Curious about</span><span class="nl">Nieuwsgierig naar</span></h3><div class="chips"><span>Drones</span><span><span class="en">AI modelling</span><span class="nl">AI-modelling</span></span><span><span class="en">Practical uses of new technology</span><span class="nl">Praktische toepassingen van nieuwe technologie</span></span></div></div>
