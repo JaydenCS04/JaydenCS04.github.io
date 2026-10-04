@@ -139,6 +139,13 @@ h2::after{content:"";display:block;width:56px;height:3px;margin-top:10px;border-
 .js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease var(--d,0s),transform .8s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.blobs i,.ring,.avatar,.hero h1,nav,.caret{animation:none!important}.js .rv{opacity:1;transform:none}}
+
+.pic a{display:block;color:inherit;text-decoration:none;outline-offset:-3px}
+.pic a::after{content:"\2197";position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:rgba(8,20,26,.62);color:#fff;font-size:1rem;opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s}
+.pic a:hover::after,.pic a:focus-visible::after{opacity:1;transform:none}
+.pic a img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.pic a:hover img{transform:scale(1.04)}
+@media (hover:none){.pic a::after{opacity:.85;transform:none}}
 </style>
 </head>
 <body>
@@ -209,7 +216,7 @@ h2::after{content:"";display:block;width:56px;height:3px;margin-top:10px;border-
       <ul><li>Teaching several levels at once, from HAVO to gymnasium</li><li>Making complex IT concepts clear and practical</li><li>Introducing students to programming, networking and safe behaviour online</li></ul></div>
       <div class="nl"><p>Ik geef informatica aan de bovenbouw van HAVO, VWO en gymnasium. Ik vertaal abstracte onderwerpen naar opdrachten waar leerlingen echt mee aan de slag kunnen.</p>
       <ul><li>Lesgeven aan meerdere niveaus tegelijk, van HAVO tot gymnasium</li><li>Complexe IT-concepten begrijpelijk en praktisch maken</li><li>Leerlingen laten kennismaken met programmeren, netwerken en veilig gedrag online</li></ul></div>
-      <figure class="pic" style="max-width:440px"><img src="edu/teaching.jpg" alt="Graduation day on the stairs" onerror="this.closest('figure').remove()"><figcaption><span class="en">Graduation day</span><span class="nl">Diploma-uitreiking</span></figcaption></figure>
+      <figure class="pic" style="max-width:440px"><a href="https://www.pourieracademy.com/" target="_blank" rel="noopener" title="pourieracademy.com"><img src="edu/teaching.jpg" alt="Graduation day on the stairs" onerror="this.closest('figure').remove()"><figcaption><span class="en">Graduation day</span><span class="nl">Diploma-uitreiking</span></figcaption></a></figure>
     </div>
     <div class="tl">
       <h3>Junior Cloud Engineer</h3>
@@ -218,7 +225,7 @@ h2::after{content:"";display:block;width:56px;height:3px;margin-top:10px;border-
       <ul><li>Setting up and configuring Azure architecture</li><li>Endpoint management of devices across the organisation</li><li>Identity &amp; Access Management</li><li>Web development</li></ul></div>
       <div class="nl"><p>Een jaar praktijkervaring met het opzetten en configureren van Azure-architectuur voor een organisatie.</p>
       <ul><li>Opzetten en configureren van Azure-architectuur</li><li>Eindpuntbeheer van devices binnen de organisatie</li><li>Identity &amp; Access Management</li><li>Web development</li></ul></div>
-      <figure class="pic" style="max-width:440px"><img src="edu/utg.jpg" alt="The Unified Technology Group team" onerror="this.closest('figure').remove()"><figcaption>Unified Technology Group (UTG)</figcaption></figure>
+      <figure class="pic" style="max-width:440px"><a href="https://www.utg-solutions.com/" target="_blank" rel="noopener" title="utg-solutions.com"><img src="edu/utg.jpg" alt="The Unified Technology Group team" onerror="this.closest('figure').remove()"><figcaption>Unified Technology Group (UTG)</figcaption></a></figure>
     </div>
     <div class="tl">
       <h3><span class="en">Ministry of Defence</span><span class="nl">Ministerie van Defensie</span></h3>
@@ -227,6 +234,7 @@ h2::after{content:"";display:block;width:56px;height:3px;margin-top:10px;border-
       <ul><li>Applying knowledge from my studies directly in practice</li><li>Working in an environment where reliability and security come first</li></ul></div>
       <div class="nl"><p>Twee jaar bij Defensie, onder meer via de pilot van Defensity College Carib, waarin studeren en werken bij Defensie samenkomen.</p>
       <ul><li>Kennis uit mijn studie direct toegepast in de praktijk</li><li>Werken in een omgeving waar betrouwbaarheid en veiligheid centraal staan</li></ul></div>
+      <figure class="pic" style="max-width:520px"><a href="https://www.curacaochronicle.com/post/local/defensity-college-carib-promotes-new-corporals-as-program-expands-in-curacao" target="_blank" rel="noopener" title="Read the article — Curaçao Chronicle"><img src="edu/defense_college.jpg" alt="Defensity College Carib ceremony" onerror="this.closest('figure').remove()"><figcaption><span class="en">Defensity College Carib ceremony</span><span class="nl">Plechtigheid Defensity College Carib</span></figcaption></a></figure>
     </div>
   </div>
   <div class="next"><a href="#profile"><span class="en">← Profile</span><span class="nl">← Profiel</span></a><a href="#education"><span class="en">Education →</span><span class="nl">Opleiding →</span></a></div>
