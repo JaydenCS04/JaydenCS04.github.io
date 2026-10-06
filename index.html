@@ -522,15 +522,36 @@ h2::after{content:"";display:block;width:56px;height:3px;margin-top:10px;border-
       try{sessionStorage.setItem("intro","1")}catch(e){}
       setTimeout(function(){d.classList.remove("intro-on");run(document.getElementById(cur));count(document.getElementById(cur))},760);
     }
-    function playClip(src){return new Promise(function(res){try{var a=new Audio(src);a.onended=res;a.onerror=res;var pr=a.play();if(pr&&pr.catch)pr.catch(res)}catch(e){res()}})}
+    function playClip(src){return new Promise(function(res){try{var a=new Audio(src);a.onended=function(){res(true)};a.onerror=function(){res(false)};var pr=a.play();if(pr&&pr.catch)pr.catch(function(){res(false)})}catch(e){res(false)}})}
+    /* fallback voice: pick the best female neural/premium voice installed on the device */
+    var voices=[];
+    function loadV(){try{voices=speechSynthesis.getVoices()}catch(e){}}
+    if("speechSynthesis" in window){loadV();speechSynthesis.onvoiceschanged=loadV}
+    var FEM=/(fenna|colette|claire|ellen|laura|sanne|aria|jenny|sonia|libby|michelle|emma|ava|samantha|serena|zira|karen|moira|tessa|fiona|allison|susan|joanna|female|vrouw)/,MAL=/(maarten|xander|frank|ruben|pim|guy|davis|ryan|christopher|eric|mark|david|daniel|alex|tom|fred|thomas|oliver|rishi|male)/;
+    function pickVoice(lang){
+      var best=null,top=-1e9;
+      voices.forEach(function(v){
+        if(v.lang.toLowerCase().replace("_","-").indexOf(lang)!==0)return;
+        var n=v.name.toLowerCase(),sc=0;
+        if(/natural|neural|online|premium|enhanced/.test(n))sc+=50;
+        if(/google/.test(n))sc+=25;
+        if(FEM.test(n))sc+=40;
+        if(MAL.test(n)&&!/female/.test(n))sc-=60;
+        if(lang==="nl"&&/nl-nl/i.test(v.lang))sc+=5;
+        if(sc>top){top=sc;best=v}
+      });
+      return best;
+    }
     function speak(text,lang){
       if(!("speechSynthesis" in window))return;
       speechSynthesis.cancel();
-      var u=new SpeechSynthesisUtterance(text);u.lang=lang==="nl"?"nl-NL":"en-US";u.rate=.95;speechSynthesis.speak(u);
+      var u=new SpeechSynthesisUtterance(text);u.lang=lang==="nl"?"nl-NL":"en-US";u.rate=.95;
+      var v=pickVoice(lang);if(v){try{u.voice=v;u.lang=v.lang}catch(e){}}
+      speechSynthesis.speak(u);
     }
     document.getElementById("introGo").onclick=function(){
       var key=season||part();
-      if(key!=="night"){var l=L(),line=greet()+". "+T[l].sub;playClip("audio/"+key+".mp3").then(function(){speak(line,l)})}
+      if(key!=="night"){var l=L(),line=greet()+". "+T[l].sub;playClip("audio/"+key+"-"+l+".mp3").then(function(ok){if(!ok)speak(line,l)})}
       closeIntro();
     };
     document.getElementById("introSkip").onclick=closeIntro;
