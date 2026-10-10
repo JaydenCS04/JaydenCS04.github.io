@@ -613,13 +613,17 @@ h2::after{content:"";display:block;width:56px;height:3px;margin-top:10px;border-
     var G={en:{morning:"Good morning",afternoon:"Good afternoon",evening:"Good evening",night:"Welcome"},nl:{morning:"Goedemorgen",afternoon:"Goedemiddag",evening:"Goedenavond",night:"Welkom"}};
     var SEA={christmas:{en:"Merry Christmas",nl:"Vrolijk kerstfeest",e:" 🎄"},newyear:{en:"Happy New Year",nl:"Gelukkig nieuwjaar",e:" 🎆"},easter:{en:"Happy Easter",nl:"Fijne Pasen",e:" 🐣"},halloween:{en:"Happy Halloween",nl:"Fijne Halloween",e:" 🎃"},valentine:{en:"Happy Valentine's Day",nl:"Fijne Valentijnsdag",e:" 💝"},kingsday:{en:"Happy King's Day",nl:"Fijne Koningsdag",e:" 👑"},carnival:{en:"Happy Carnival",nl:"Fijne Carnaval",e:" 🎭"},flagday:{en:"Happy Curaçao Flag Day",nl:"Fijne Curaçaose Vlaggendag",e:" ⭐"},curacaoday:{en:"Happy Curaçao Day",nl:"Fijne Dag van Curaçao",e:" ⭐"}};
     var T={en:{sub:"Welcome to my portfolio.",go:"Enter",skip:"Skip",lang:"Nederlands",mOn:"Music: on",mOff:"Music: off"},nl:{sub:"Welkom op mijn portfolio.",go:"Binnenkomen",skip:"Overslaan",lang:"English",mOn:"Muziek: aan",mOff:"Muziek: uit"}};
+    var today=(function(n){return n.getFullYear()+"-"+(n.getMonth()+1)+"-"+n.getDate()})(new Date());
+    var preview=new URLSearchParams(location.search).has("season");
+    var greeted=null;try{greeted=localStorage.getItem("greeted")}catch(e){}
+    var useSeason=!!season&&(preview||greeted!==season+"|"+today);   /* holiday greeting only once per day, per visitor */
     function part(){var h=new Date().getHours();return h>=5&&h<12?"morning":h>=12&&h<18?"afternoon":h>=18&&h<22?"evening":"night"}
     function L(){return d.lang==="nl"?"nl":"en"}
-    function greet(){return season?SEA[season][L()]:G[L()][part()]}
+    function greet(){return useSeason?SEA[season][L()]:G[L()][part()]}
     function render(){
       var t=T[L()];
       document.getElementById("hiG").textContent=greet();
-      document.getElementById("hiN").textContent=season?SEA[season].e:"";
+      document.getElementById("hiN").textContent=useSeason?SEA[season].e:"";
       document.getElementById("introSub").textContent=t.sub;
       document.getElementById("introGo").textContent=t.go;
       document.getElementById("introSkip").textContent=t.skip;
@@ -629,6 +633,7 @@ h2::after{content:"";display:block;width:56px;height:3px;margin-top:10px;border-
     render();
     document.getElementById("introLang").onclick=function(){var l=L()==="en"?"nl":"en";d.lang=l;save("lang",l);setTitle();render()};
     function closeIntro(){
+      if(useSeason&&!preview){try{localStorage.setItem("greeted",season+"|"+today)}catch(e){}}
       intro.classList.add("out");
       try{sessionStorage.setItem("intro","1")}catch(e){}
       setTimeout(function(){d.classList.remove("intro-on");run(document.getElementById(cur));count(document.getElementById(cur))},760);
@@ -661,7 +666,7 @@ h2::after{content:"";display:block;width:56px;height:3px;margin-top:10px;border-
       speechSynthesis.speak(u);
     }
     document.getElementById("introGo").onclick=function(){
-      var key=season||part();
+      var key=useSeason?season:part();
       if(key!=="night"){var l=L(),line=greet()+". "+T[l].sub;playClip(CLIPS[key+"-"+l]||"audio/"+key+"-"+l+".mp3").then(function(ok){if(!ok)speak(line,l)})}
       if(musicPref!=="off")Mus.start();
       closeIntro();
